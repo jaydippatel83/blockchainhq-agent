@@ -34,20 +34,20 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col flex-grow items-center justify-center text-black dark:text-white w-full h-full">
-      <div className="w-full max-w-2xl h-[70vh] bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 flex flex-col">
+    <div className="flex flex-col flex-grow items-center justify-center w-full h-full px-2 sm:px-4">
+      <div className="w-full max-w-2xl h-[70vh] min-h-[500px] gradient-card-purple-teal backdrop-blur-sm shadow-2xl shadow-purple-500/20 rounded-xl p-3 sm:p-4 md:p-6 flex flex-col">
         {/* Chat Messages */}
-        <div className="flex-grow overflow-y-auto space-y-3 p-2">
+        <div className="flex-grow overflow-y-auto space-y-3 p-2 sm:p-3 scrollbar-thin scrollbar-thumb-purple-500/50 scrollbar-track-transparent">
           {messages.length === 0 ? (
-            <p className="text-center text-gray-500">Start chatting with AgentKit...</p>
+            <p className="text-center text-gray-300 italic pt-4">Start chatting with BlockchainHQ Agent...</p>
           ) : (
             messages.map((msg, index) => (
               <div
                 key={index}
-                className={`p-3 rounded-2xl shadow ${
+                className={`p-3 sm:p-4 rounded-lg max-w-[85%] sm:max-w-[75%] ${
                   msg.sender === "user"
-                    ? "bg-[#0052FF] text-white self-end"
-                    : "bg-gray-100 dark:bg-gray-700 self-start"
+                    ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white self-end ml-auto shadow-lg shadow-purple-500/30"
+                    : "bg-gradient-to-br from-indigo-900/80 via-slate-800/80 to-slate-900/80 text-gray-100 self-start border border-indigo-500/30 shadow-lg shadow-indigo-500/20"
                 }`}
               >
                 <ReactMarkdown
@@ -55,7 +55,7 @@ export default function Home() {
                     a: props => (
                       <a
                         {...props}
-                        className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300"
+                        className="text-cyan-400 underline hover:text-cyan-300 transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                       />
@@ -69,17 +69,22 @@ export default function Home() {
           )}
 
           {/* Thinking Indicator */}
-          {isThinking && <div className="text-right mr-2 text-gray-500 italic">🤖 Thinking...</div>}
+          {isThinking && (
+            <div className="text-right mr-2 text-gray-400 italic flex items-center justify-end gap-2">
+              <span className="animate-pulse">🤖</span>
+              <span>Thinking...</span>
+            </div>
+          )}
 
           {/* Invisible div to track the bottom */}
           <div ref={messagesEndRef} />
         </div>
 
         {/* Input Box */}
-        <div className="flex items-center space-x-2 mt-2">
+        <div className="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
           <input
             type="text"
-            className="flex-grow p-2 rounded border dark:bg-gray-700 dark:border-gray-600"
+            className="flex-grow p-3 sm:p-4 rounded-lg border-2 border-indigo-500/50 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 transition-all backdrop-blur-sm"
             placeholder={"Type a message..."}
             value={input}
             onChange={e => setInput(e.target.value)}
@@ -88,10 +93,10 @@ export default function Home() {
           />
           <button
             onClick={onSendMessage}
-            className={`px-6 py-2 rounded-full font-semibold transition-all ${
+            className={`px-4 sm:px-6 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
               isThinking
-                ? "bg-gray-300 cursor-not-allowed text-gray-500"
-                : "bg-[#0052FF] hover:bg-[#003ECF] text-white shadow-md"
+                ? "bg-gray-700 cursor-not-allowed text-gray-500 border-2 border-gray-700"
+                : "gradient-button-purple-green text-white border-0 hover:shadow-lg hover:shadow-green-500/50 active:scale-95"
             }`}
             disabled={isThinking}
           >

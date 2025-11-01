@@ -3,6 +3,29 @@
 @tailwind utilities;
 
 body {
-  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  @apply bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+}
+
+@layer utilities {
+  .gradient-text-orange-pink {
+    @apply bg-gradient-to-r from-orange-400 via-pink-500 to-pink-600 bg-clip-text text-transparent;
+  }
+  
+  .gradient-text-green-blue {
+    @apply bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .gradient-button-purple-blue {
+    @apply bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600;
+  }
+  
+  .gradient-button-purple-green {
+    @apply bg-gradient-to-r from-purple-500 to-green-500 hover:from-purple-600 hover:to-green-600;
+  }
+  
+  .gradient-card-purple-teal {
+    @apply bg-gradient-to-br from-purple-600/20 via-blue-500/20 to-teal-500/20 border border-purple-500/30;
+  }
 }
