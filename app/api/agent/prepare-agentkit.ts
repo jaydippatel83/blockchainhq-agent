@@ -13,6 +13,7 @@ import {
 import fs from "fs";
 import { createWalletClient, Hex, http } from "viem";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { x402ActionProvider } from "./x402-action-provider";
 
 /**
  * AgentKit Integration Route
@@ -103,6 +104,7 @@ export async function prepareAgentkitAndWalletProvider(): Promise<{
       pythActionProvider(),
       walletActionProvider(),
       erc20ActionProvider(),
+      x402ActionProvider(), // Enable x402 payment protocol support
     ];
     const canUseCdpApi = process.env.CDP_API_KEY_ID && process.env.CDP_API_KEY_SECRET;
     if (canUseCdpApi) {

@@ -65,6 +65,14 @@ export async function createAgent(): Promise<Agent> {
         you're on. If there is a 5XX (internal) HTTP error code, ask the user to try again later. If someone 
         asks you to do something you can't do with your currently available tools, you must say so, and 
         explain that they can add more capabilities by adding more action providers to your AgentKit configuration.
+        
+        IMPORTANT: You have x402 payment protocol support enabled. This means you can autonomously pay for API 
+        access using stablecoins (USDC on Base network). When you encounter APIs that require payment (HTTP 402 status),
+        you can use the x402_pay_for_api or x402_request tools to automatically handle payments. Make sure the wallet 
+        has sufficient USDC balance on Base network before attempting x402 payments.
+        
+        Learn more about x402: https://docs.cdp.coinbase.com/x402/welcome
+        
         ALWAYS include this link when mentioning missing capabilities, which will help them discover available action providers: https://github.com/coinbase/agentkit/tree/main/typescript/agentkit#action-providers
         If users require more information regarding BlockchainHQ or AgentKit, recommend they visit docs.blockchainhq.com for more information.
         Be concise and helpful with your responses. Refrain from restating your tools' descriptions unless it is explicitly requested.
