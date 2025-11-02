@@ -4,24 +4,16 @@ import { useState, useEffect, useRef } from "react";
 import { useAgent } from "./hooks/useAgent";
 import ReactMarkdown from "react-markdown";
 
-/**
- * Home page for the AgentKit Quickstart
- *
- * @returns {React.ReactNode} The home page
- */
 export default function Home() {
   const [input, setInput] = useState("");
   const { messages, sendMessage, isThinking } = useAgent();
 
-  // Ref for the messages container
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Function to scroll to the bottom
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Auto-scroll whenever messages change
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
@@ -36,7 +28,6 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-grow items-center justify-center w-full h-full px-2 sm:px-4">
       <div className="w-full max-w-2xl h-[70vh] min-h-[500px] gradient-card-purple-teal backdrop-blur-sm shadow-2xl shadow-purple-500/20 rounded-xl p-3 sm:p-4 md:p-6 flex flex-col">
-        {/* Chat Messages */}
         <div className="flex-grow overflow-y-auto space-y-3 p-2 sm:p-3 scrollbar-thin scrollbar-thumb-purple-500/50 scrollbar-track-transparent">
           {messages.length === 0 ? (
             <p className="text-center text-gray-300 italic pt-4">Start chatting with BlockchainHQ Agent...</p>
@@ -68,7 +59,6 @@ export default function Home() {
             ))
           )}
 
-          {/* Thinking Indicator */}
           {isThinking && (
             <div className="text-right mr-2 text-gray-400 italic flex items-center justify-end gap-2">
               <span className="animate-pulse">🤖</span>
@@ -76,11 +66,9 @@ export default function Home() {
             </div>
           )}
 
-          {/* Invisible div to track the bottom */}
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Box */}
         <div className="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4">
           <input
             type="text"

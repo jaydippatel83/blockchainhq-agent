@@ -1,21 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-/**
- * Metadata for the page
- */
 export const metadata: Metadata = {
   title: "BlockchainHQ Agent",
   description: "AI agent powered by BlockchainHQ for onchain interactions",
 };
 
-/**
- * Root layout for the page
- *
- * @param {object} props - The props for the root layout
- * @param {React.ReactNode} props.children - The children for the root layout
- * @returns {React.ReactNode} The root layout
- */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
-        {/* Header (Fixed Height) */}
         <header className="py-4 sm:py-6 flex items-center justify-between relative border-b border-indigo-500/30 backdrop-blur-sm">
           <div className="ml-4 sm:ml-6 text-xl sm:text-2xl font-bold">
             <span className="gradient-text-orange-pink">Blockchain</span>
@@ -38,10 +27,8 @@ export default function RootLayout({
           </span>
         </header>
 
-        {/* Main Content (Dynamic, Grows but Doesn't Force Scroll) */}
         <main className="flex-grow flex items-center justify-center px-4">{children}</main>
 
-        {/* Footer (Fixed Height) */}
         <footer className="py-4 sm:py-6 text-center flex-none border-t border-indigo-500/30 backdrop-blur-sm">
           <div className="text-base sm:text-lg font-semibold mb-3">
             <span className="gradient-text-orange-pink">Blockchain</span>
