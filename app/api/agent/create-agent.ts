@@ -2,23 +2,6 @@ import { openai } from "@ai-sdk/openai";
 import { getVercelAITools } from "@coinbase/agentkit-vercel-ai-sdk";
 import { prepareAgentkitAndWalletProvider } from "./prepare-agentkit";
 
-/**
- * Agent Configuration Guide
- *
- * This file handles the core configuration of your AI agent's behavior and capabilities.
- *
- * Key Steps to Customize Your Agent:
- *
- * 1. Select your LLM:
- *    - Modify the `openai` instantiation to choose your preferred LLM
- *    - Configure model parameters like temperature and max tokens
- *
- * 2. Instantiate your Agent:
- *    - Pass the LLM, tools, and memory into `createReactAgent()`
- *    - Configure agent-specific parameters
- */
-
-// The agent
 type Agent = {
   tools: ReturnType<typeof getVercelAITools>;
   system: string;
@@ -27,19 +10,7 @@ type Agent = {
 };
 let agent: Agent;
 
-/**
- * Initializes and returns an instance of the AI agent.
- * If an agent instance already exists, it returns the existing one.
- *
- * @function getOrInitializeAgent
- * @returns {Promise<ReturnType<typeof createReactAgent>>} The initialized AI agent.
- *
- * @description Handles agent setup
- *
- * @throws {Error} If the agent initialization fails.
- */
 export async function createAgent(): Promise<Agent> {
-  // If agent has already been initialized, return it
   if (agent) {
     return agent;
   }
@@ -51,10 +22,8 @@ export async function createAgent(): Promise<Agent> {
   const { agentkit, walletProvider } = await prepareAgentkitAndWalletProvider();
 
   try {
-    // Initialize LLM: https://platform.openai.com/docs/models#gpt-4o
     const model = openai("gpt-4o-mini");
 
-    // Initialize Agent
     const canUseFaucet = walletProvider.getNetwork().networkId == "base-sepolia";
     const faucetMessage = `If you ever need funds, you can request them from the faucet.`;
     const cantUseFaucetMessage = `If you need funds, you can provide your wallet details and request funds from the user.`;

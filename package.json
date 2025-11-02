@@ -25,7 +25,8 @@
     "react-dom": "^18",
     "react-markdown": "^10.0.0",
     "viem": "^2.24.1",
-    "wagmi": "^2.11.0"
+    "wagmi": "^2.11.0",
+    "axios": "^1.9.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",
